@@ -1,6 +1,6 @@
 (B)
 4 3 2 1
-3 4 2 1 (sb) - compare les 2 premieres element
+3 4 2 1 (sb) - compare les 2 premieres elements
 4 2 1 3 (rb) - compare 1er et dernier - si 1er est plus petit que dernier je fais rr - vice versa
 2 4 1 3 (sb)
 3 2 4 1 (rrb)
