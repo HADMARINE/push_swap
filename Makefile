@@ -6,7 +6,7 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/28 14:22:59 by lhojoon           #+#    #+#              #
-#    Updated: 2023/11/28 16:37:46 by lhojoon          ###   ########.fr        #
+#    Updated: 2023/11/28 20:09:35 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ SRCS_RAW =	main.c \
 			init_main_value.c \
 			push_elements.c \
 			rotate_elements.c \
-			reverse_elements.c \
+			reverse_rotate_elements.c \
 			swap_elements.c \
-			execution.c
+			execution.c \
+			check.c
 SRCS = $(addprefix $(DIR)/,$(SRCS_RAW))
 OBJS = $(SRCS:c=o)
 INCLUDES = -I./includes -I./libft

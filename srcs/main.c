@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:14:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:42:47 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 23:12:23 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,27 @@ int	main(int argc, char *argv[])
 {
 	t_list	*la;
 	t_list	*lb;
-	int		i;
+	char	**slst;
+	int		lstlen;
 
-	if (init_main_value(argc, argv, &la) == false)
+	if (argc <= 1)
+		return (EXIT_FAILURE);
+	if (argc == 2)
+		init_params_split(argv[1], &slst, &lstlen);
+	else
+		init_params_plain(argc, argv, &slst, &lstlen);
+	la = NULL;
+	lb = NULL;
+	if (init_main_value(slst, lstlen, &la) == false)
 		return (EXIT_FAILURE);
 	execution(&la, &lb);
-	while (la)
-	{
-		ft_printf("%d")
-	}
+	// t_list	*lp;
+	// lp = la;
+	// while (lp)
+	// {
+	// 	ft_printf("%d\n", *((int *)lp->content));
+	// 	lp = lp->next;
+	// }
+	ft_lstclear(&la, free);
 	return (EXIT_SUCCESS);
 }

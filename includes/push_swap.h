@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:37:20 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:42:02 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 21:06:59 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 # include "libft.h"
 
-bool	init_main_value(int argc, char *argv[], t_list **la);
+bool	init_main_value(char **slst, int lstlen, t_list **la);
+int		init_params_plain(int argc, char **argv, char ***slst, int *lstlen);
+int		init_params_split(char *str, char ***slst, int *lstlen);
 bool	swap_elements(t_list **lst);
 bool	swap_a(t_list **la);
 bool	swap_b(t_list **lb);

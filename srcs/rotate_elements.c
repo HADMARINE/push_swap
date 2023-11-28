@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:56 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:30:56 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 20:07:27 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ bool	rotate_elements(t_list **lst)
 	lp2 = (*lst)->next;
 	(*lst)->next = NULL;
 	*lst = lp2;
+	return (true);
 }
 
 bool	rotate_a(t_list **la)
