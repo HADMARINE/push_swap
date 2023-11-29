@@ -6,67 +6,42 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:36:03 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/29 15:58:13 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/30 00:25:04 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static bool	sort_items_a(t_list **lst)
+// Make sure that you get la size bigger than 3
+static bool	send_b_except_three(t_list **la, t_list **lb)
 {
-	while (true)
-	{
-		if (*((int *)(*lst)->content) > *((int *)(*lst)->next->content))
-			swap_a(lst);
-		if (verify_sorted(*lst))
-			break ;
-		if (*((int *)ft_lstlast(*lst)->content) > *((int *)(*lst)->content))
-			reverse_rotate_a(lst);
-		else
-			rotate_a(lst);
-		if (verify_sorted(*lst))
-			break ;
-	}
-	return (true);
-}
+	size_t	size;
+	size_t	i;
 
-static bool	sort_items_b(t_list **lst)
-{
-	while (true)
+	size = ft_lstsize(*la) - 3;
+	i = 0;
+	while (i < size)
 	{
-		if (*((int *)(*lst)->content) > *((int *)(*lst)->next->content))
-			swap_b(lst);
-		if (verify_sorted(*lst))
-			break ;
-		if (*((int *)ft_lstlast(*lst)->content) > *((int *)(*lst)->content))
-			reverse_rotate_b(lst);
-		else
-			rotate_b(lst);
-		if (verify_sorted(*lst))
-			break ;
+		push_b(la, lb);
+		i++;
 	}
-	return (true);
-}
-
-static bool	send_back_b_to_a(t_list **la, t_list **lb)
-{
-	while (*lb)
-		if (push_a(la, lb) == false)
-			return (false);
 	return (true);
 }
 
 void	execution(t_list **la, t_list **lb)
 {
-	size_t	lsize;
-	size_t	i;
+	bool		is_sorted;
+	t_ab_value	val;
 
-	lsize = ft_lstsize(*la) / 2;
-	i = 0;
-	while (i++ < lsize)
-		push_b(la, lb);
-	sort_items_a(la);
-	sort_items_b(lb);
-	send_back_b_to_a(la, lb);
-	sort_items_a(la);
+	if (send_b_except_three(la, lb) == false)
+		return ;
+	sort_three_elements(la, STACK_TYPE_A);
+	is_sorted = false;
+	while (is_sorted == false || *lb != NULL)
+	{
+		// print_lists(*la, *lb);
+		val = get_smallest_cost(la, lb);
+		execute_by_command(val, la, lb);
+		is_sorted = verify_sorted(*la);
+	}
 }

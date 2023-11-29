@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_elements.c                                    :+:      :+:    :+:   */
+/*   print_lists.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 16:21:28 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/29 22:44:10 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/29 22:57:44 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/29 23:00:30 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	push_elements(t_list **dest, t_list **src)
+void	print_lists(t_list *la, t_list *lb)
 {
 	t_list	*lp;
 
-	if (*src == NULL)
-		return (false);
-	lp = *src;
-	*src = (*src)->next;
-	lp->next = *dest;
-	*dest = lp;
-	return (true);
-}
-
-bool	push_a(t_list **la, t_list **lb)
-{
-	ft_putstr_fd("pa\n", 1);
-	return (push_elements(la, lb));
-}
-
-bool	push_b(t_list **la, t_list **lb)
-{
-	ft_putstr_fd("pb\n", 1);
-	return (push_elements(lb, la));
+	lp = la;
+	ft_printf("A : ");
+	while (lp)
+	{
+		ft_printf("%d ", *((int *)lp->content));
+		lp = lp->next;
+	}
+	ft_printf("\nB : ");
+	lp = lb;
+	while (lp)
+	{
+		ft_printf("%d ", *((int *)lp->content));
+		lp = lp->next;
+	}
+	ft_putchar_fd('\n', 1);
 }

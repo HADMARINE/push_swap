@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_elements.c                                    :+:      :+:    :+:   */
+/*   get_cost2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 16:21:28 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/29 22:44:10 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/29 23:51:16 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/29 23:53:54 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	push_elements(t_list **dest, t_list **src)
+size_t	get_index_of_list(t_list *lp, t_list *lsp)
 {
-	t_list	*lp;
+	size_t	i;
 
-	if (*src == NULL)
-		return (false);
-	lp = *src;
-	*src = (*src)->next;
-	lp->next = *dest;
-	*dest = lp;
-	return (true);
-}
-
-bool	push_a(t_list **la, t_list **lb)
-{
-	ft_putstr_fd("pa\n", 1);
-	return (push_elements(la, lb));
-}
-
-bool	push_b(t_list **la, t_list **lb)
-{
-	ft_putstr_fd("pb\n", 1);
-	return (push_elements(lb, la));
+	i = 0;
+	while (lp != lsp)
+	{
+		i++;
+		lp = lp->next;
+	}
+	return (i);
 }
