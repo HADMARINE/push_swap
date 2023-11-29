@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:37:20 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/28 21:06:59 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/29 18:00:10 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdbool.h>
+# include <limits.h>
 
 # include "libft.h"
 
@@ -37,5 +38,15 @@ bool	push_a(t_list **la, t_list **lb);
 bool	push_b(t_list **la, t_list **lb);
 bool	verify_sorted(t_list *lst);
 void	execution(t_list **la, t_list **lb);
+
+typedef enum e_stack_type {
+	STACK_TYPE_A = 0,
+	STACK_TYPE_B = 1
+}	t_stack_type;
+
+typedef struct s_ab_value {
+	int	a;
+	int	b;
+}	t_ab_value;
 
 #endif
