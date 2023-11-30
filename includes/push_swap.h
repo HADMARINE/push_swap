@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:37:20 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/29 23:00:44 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/30 17:35:07 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void		sort_three_elements(t_list **lst, t_stack_type stack);
 t_ab_value	get_smallest_cost(t_list **ta, t_list **tb);
 void		execute_by_command(t_ab_value value, t_list **ta, t_list **tb);
 void		print_lists(t_list *la, t_list *lb);
+void		merge_sort(t_list **la, t_list **lb, t_stack_type type, int size);
 
 #endif

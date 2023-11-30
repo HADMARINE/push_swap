@@ -6,7 +6,7 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/28 14:22:59 by lhojoon           #+#    #+#              #
-#    Updated: 2023/11/29 23:51:31 by lhojoon          ###   ########.fr        #
+#    Updated: 2023/11/30 17:03:15 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS_RAW =	main.c \
 			sort_three_elements.c \
 			sort_three_elements2.c \
 			print_lists.c \
-			get_cost2.c
+			get_cost2.c \
+			merge_sort.c
 SRCS = $(addprefix $(DIR)/,$(SRCS_RAW))
 OBJS = $(SRCS:c=o)
 INCLUDES = -I./includes -I./libft
