@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:55:52 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/12/01 12:41:08 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:04:34 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,24 @@ t_ab_value	get_smallest_cost(t_list **ta, t_list **tb)
 	return (abv);
 }
 
-static void	execute_value_b(t_ab_value value, t_list **tb)
+static void	execute_value_b(t_ab_value value, t_list **tb, t_stack_type type)
 {
+	(void)type;
 	if (value.b < 0)
 	{
 		value.b = -value.b;
 		while (value.b-- != 0)
-			reverse_rotate_b(tb);
+			reverse_rotate_by_type(tb, type);
 	}
 	else
 	{
 		while (value.b-- != 0)
-			rotate_b(tb);
+			rotate_by_type(tb, type);
 	}
 }
 
-static void	execute_value_a(t_ab_value value, t_list **ta, t_list **tb)
+static void	execute_value_a(
+				t_ab_value value, t_list **ta, t_list **tb, t_stack_type type)
 {
 	int	avalue;
 
@@ -90,33 +92,44 @@ static void	execute_value_a(t_ab_value value, t_list **ta, t_list **tb)
 	{
 		value.a = -value.a;
 		while (value.a-- != 0)
-			reverse_rotate_a(ta);
+			reverse_rotate_by_type(ta, type);
 	}
 	else
 	{
 		if (value.a != ft_lstsize(*ta))
 			while (value.a-- != 0)
-				rotate_a(ta);
+				rotate_by_type(ta, type);
 	}
-	push_a(ta, tb);
+	if (type == STACK_TYPE_A)
+		push_a(ta, tb);
+	else
+		push_b(tb, ta);
 	if (avalue < 0)
 	{
 		avalue = -avalue + 1;
 		while (avalue-- != 0)
-			rotate_a(ta);
+			rotate_by_type(ta, type);
 	}
 	else
 	{
 		if (avalue == ft_lstsize(*ta))
-			rotate_a(ta);
+			rotate_by_type(ta, type);
 		else
 			while (avalue-- != 0)
-				reverse_rotate_a(ta);
+				reverse_rotate_by_type(ta, type);
 	}
 }
 
-void	execute_by_command(t_ab_value value, t_list **ta, t_list **tb)
+void
+	execute_by_command(t_ab_value value,
+		t_list **ta, t_list **tb, t_stack_type type)
 {
-	execute_value_b(value, tb);
-	execute_value_a(value, ta, tb);
+	t_stack_type	t;
+
+	if (type == STACK_TYPE_A)
+		t = STACK_TYPE_B;
+	else
+		t = STACK_TYPE_A;
+	execute_value_b(value, tb, t);
+	execute_value_a(value, ta, tb, type);
 }
