@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:14:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/29 23:01:05 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/12/01 12:47:12 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv[])
 	if (init_main_value(slst, lstlen, &la) == false)
 		return (EXIT_FAILURE);
 	execution(&la, &lb);
+	print_lists(la, lb);
 	ft_lstclear(&la, free);
 	return (EXIT_SUCCESS);
 }

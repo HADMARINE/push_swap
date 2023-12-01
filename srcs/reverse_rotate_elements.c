@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:32:41 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/28 20:08:10 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/12/01 12:21:37 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ bool	reverse_rotate_elements(t_list **lst)
 	t_list	*lp2;
 
 	lp = *lst;
-	if (!lp || !lp->next || !lp->next->next)
+	if (!lp || !lp->next)
 		return (false);
-	while (lp->next->next != NULL)
-		lp = lp->next;
+	if (lp->next != NULL)
+		while (lp->next->next != NULL)
+			lp = lp->next;
 	lp2 = lp->next;
 	lp->next = NULL;
 	lp2->next = *lst;
