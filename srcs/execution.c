@@ -6,42 +6,126 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:36:03 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/30 00:25:04 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/05 15:52:44 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Make sure that you get la size bigger than 3
-static bool	send_b_except_three(t_list **la, t_list **lb)
+t_list	*ft_lstcpy(t_list *lst)
 {
-	size_t	size;
-	size_t	i;
+	t_list	*new;
+	t_list	*tmp;
 
-	size = ft_lstsize(*la) - 3;
-	i = 0;
-	while (i < size)
+	new = NULL;
+	tmp = lst;
+	while (tmp)
 	{
-		push_b(la, lb);
+		ft_lstadd_back(&new, ft_lstnew(tmp->content));
+		tmp = tmp->next;
+	}
+	return (new);
+}
+
+void	ft_lstswap(t_list *a, t_list *b)
+{
+	void	*tmp;
+
+	tmp = a->content;
+	a->content = b->content;
+	b->content = tmp;
+}
+
+t_list	*sort_lst(t_list *lst)
+{
+	t_list	*tmp;
+	t_list	*new;
+	int		i;
+	int		j;
+
+	i = 0;
+	new = ft_lstcpy(lst);
+	while (i < ft_lstsize(lst) - 1)
+	{
+		j = i;
+		tmp = ft_lstget_idx(new, i);
+		while (j < ft_lstsize(lst) - 1)
+		{
+			if (*((int *)tmp->content) > *((int *)tmp->next->content))
+			{
+				ft_lstswap(tmp, tmp->next);
+			}
+			tmp = tmp->next;
+			j++;
+		}
 		i++;
 	}
-	return (true);
+	return (new);
+}
+
+void	lst_paste(t_list *dest, t_list *src)
+{
+	while (src)
+	{
+		*((int *)dest->content) = *((int *)src->content);
+		dest = dest->next;
+		src = src->next;
+	}
+}
+
+void	replace_by_simple_number(t_list **la)
+{
+	t_list	*tmp;
+	t_list	*new;
+	int		i;
+	int		j;
+
+	i = -1;
+	tmp = sort_lst(*la);
+	new = ft_lstcpy(*la);
+	while (++i < ft_lstsize(*la))
+	{
+		j = 0;
+		while (j < ft_lstsize(*la))
+		{
+			if (*((int *)ft_lstget_idx(tmp, i)->content)
+				== *((int *)ft_lstget_idx(*la, j)->content))
+			{
+				*((int *)ft_lstget_idx(new, j)->content) = i;
+				break ;
+			}
+			j++;
+		}
+	}
+	lst_paste(*la, new);
+	ft_lstclear(&tmp, NULL);
+	ft_lstclear(&new, NULL);
 }
 
 void	execution(t_list **la, t_list **lb)
 {
-	bool		is_sorted;
-	t_ab_value	val;
+	int		size;
+	int		i;
+	int		j;
 
-	if (send_b_except_three(la, lb) == false)
-		return ;
-	sort_three_elements(la, STACK_TYPE_A);
-	is_sorted = false;
-	while (is_sorted == false || *lb != NULL)
+	replace_by_simple_number(la);
+	size = ft_lstsize(*la);
+	i = 0;
+	while (!verify_sorted(*la))
 	{
-		// print_lists(*la, *lb);
-		val = get_smallest_cost(la, lb);
-		execute_by_command(val, la, lb);
-		is_sorted = verify_sorted(*la);
-	}
+		j = 0;
+		while (size > j)
+		{
+			if (((*((int *)(*la)->content) >> i) & 1) == 1)
+				rotate_a(la);
+			else
+				push_b(la, lb);
+			j++;
+		}
+		while (*lb != NULL)
+		{
+			push_a(la, lb);
+		}
+		i++;
+	}	
 }
