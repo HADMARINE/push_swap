@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:37:20 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/05 19:50:44 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/06 12:48:14 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void		execute_by_command(t_ab_value value, t_list **ta, t_list **tb);
 void		print_lists(t_list *la, t_list *lb);
 bool		input_error_check(char **slst, int lstlen, bool is_freeable);
 void		exit_with_error(void);
-
+void		free_slst(char **slst, int lstlen);
+bool		error_free_and_exit(char **slst, int lstlen, bool is_freeable);
+bool		duplicate_check(t_list *lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:14:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/05 19:51:08 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/06 12:48:39 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ int	main(int argc, char *argv[])
 	lb = NULL;
 	if (init_main_value(slst, lstlen, &la) == false)
 		exit_with_error();
+	if (duplicate_check(la) == false)
+	{
+		ft_lstclear(&la, free);
+		exit_with_error();
+	}
 	execution(&la, &lb);
 	ft_lstclear(&la, free);
 	return (EXIT_SUCCESS);
