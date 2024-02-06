@@ -6,35 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:36:03 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/05 18:48:07 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/06 14:54:20 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_list	*ft_lstcpy(t_list *lst)
-{
-	t_list	*new;
-	t_list	*tmp;
-
-	new = NULL;
-	tmp = lst;
-	while (tmp)
-	{
-		ft_lstadd_back(&new, ft_lstnew(tmp->content));
-		tmp = tmp->next;
-	}
-	return (new);
-}
-
-void	ft_lstswap(t_list *a, t_list *b)
-{
-	void	*tmp;
-
-	tmp = a->content;
-	a->content = b->content;
-	b->content = tmp;
-}
 
 t_list	*sort_lst(t_list *lst)
 {
@@ -102,12 +78,33 @@ void	replace_by_simple_number(t_list **la)
 	ft_lstclear(&new, NULL);
 }
 
+static void	sort_small_list(t_list **la, t_list **lb)
+{
+	int	size;
+
+	(void)lb;
+	size = ft_lstsize(*la);
+	if (size == 2)
+	{
+		if (*((int *)(*la)->content) > *((int *)(*la)->next->content))
+			swap_a(la);
+	}
+	else if (size == 3)
+		sort_three_elements(la);
+	else if (size == 4)
+		sort_four_elements(la, lb);
+	else
+		sort_five_elements(la, lb);
+}
+
 void	execution(t_list **la, t_list **lb)
 {
 	int		size;
 	int		i;
 	int		j;
 
+	if (ft_lstsize(*la) <= 5)
+		return (sort_small_list(la, lb));
 	replace_by_simple_number(la);
 	size = ft_lstsize(*la);
 	i = 0;
@@ -123,9 +120,7 @@ void	execution(t_list **la, t_list **lb)
 			j++;
 		}
 		while (*lb != NULL)
-		{
 			push_a(la, lb);
-		}
 		i++;
 	}	
 }
