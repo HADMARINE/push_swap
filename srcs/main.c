@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:14:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/23 23:58:25 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/24 00:10:48 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 	int		lstlen;
 
 	if (argc <= 1)
-		exit_with_error();
+		return (EXIT_SUCCESS);
 	if (argc == 2)
 		init_params_split(argv[1], &slst, &lstlen);
 	else
