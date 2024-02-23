@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:36:03 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/06 14:54:20 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/23 22:25:12 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	execution(t_list **la, t_list **lb)
 	int		i;
 	int		j;
 
+	if (verify_sorted(*la))
+		return ;
 	if (ft_lstsize(*la) <= 5)
 		return (sort_small_list(la, lb));
 	replace_by_simple_number(la);
@@ -110,17 +112,16 @@ void	execution(t_list **la, t_list **lb)
 	i = 0;
 	while (!verify_sorted(*la))
 	{
-		j = 0;
-		while (size > j)
+		j = -1;
+		while (size > ++j)
 		{
 			if (((*((int *)(*la)->content) >> i) & 1) == 1)
 				rotate_a(la);
 			else
 				push_b(la, lb);
-			j++;
 		}
 		while (*lb != NULL)
 			push_a(la, lb);
 		i++;
-	}	
+	}
 }

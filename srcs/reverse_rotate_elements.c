@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:32:41 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/12/01 15:39:36 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 20:08:10 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,15 @@ bool	reverse_rotate_elements(t_list **lst)
 	t_list	*lp2;
 
 	lp = *lst;
-	if (!lp || !lp->next)
+	if (!lp || !lp->next || !lp->next->next)
 		return (false);
-	if (lp->next != NULL)
-		while (lp->next->next != NULL)
-			lp = lp->next;
+	while (lp->next->next != NULL)
+		lp = lp->next;
 	lp2 = lp->next;
 	lp->next = NULL;
 	lp2->next = *lst;
 	*lst = lp2;
 	return (true);
-}
-
-bool	reverse_rotate_by_type(t_list **l, t_stack_type type)
-{
-	if (type == STACK_TYPE_A)
-		return (reverse_rotate_a(l));
-	else
-		return (reverse_rotate_b(l));
 }
 
 bool	reverse_rotate_a(t_list **la)

@@ -37,7 +37,6 @@ int	main(int argc, char *argv[])
 		exit_with_error();
 	}
 	execution(&la, &lb);
-	print_lists(la, lb);
 	ft_lstclear(&la, free);
 	return (EXIT_SUCCESS);
 }

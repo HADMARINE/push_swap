@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:52:00 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/06 13:23:15 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/23 22:20:10 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static bool	int_range_check(char *s)
 	if (ft_strlen(s) < 10)
 		return (true);
 	if (is_minus)
-	{	
+	{
 		if (ft_strncmp(s, "2147483648", 10) > 0)
 			return (false);
 	}
 	else
-	{	
+	{
 		if (ft_strncmp(s, "2147483647", 10) > 0)
 			return (false);
 	}
