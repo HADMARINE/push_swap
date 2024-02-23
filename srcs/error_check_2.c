@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_cost2.c                                        :+:      :+:    :+:   */
+/*   error_check_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 23:51:16 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/29 23:53:54 by lhojoon          ###   ########.fr       */
+/*   Created: 2024/02/06 12:33:05 by lhojoon           #+#    #+#             */
+/*   Updated: 2024/02/06 12:42:23 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	get_index_of_list(t_list *lp, t_list *lsp)
+void	exit_with_error(void)
 {
-	size_t	i;
+	ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
+}
+
+void	free_slst(char **slst, int lstlen)
+{
+	int	i;
 
 	i = 0;
-	while (lp != lsp)
+	while (i < lstlen)
 	{
+		free(slst[i]);
 		i++;
-		lp = lp->next;
 	}
-	return (i);
+	free(slst);
+}
+
+bool	error_free_and_exit(char **slst, int lstlen, bool is_freeable)
+{
+	if (is_freeable == true)
+		free_slst(slst, lstlen);
+	return (false);
 }

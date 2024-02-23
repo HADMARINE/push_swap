@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_elements.c                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 16:21:28 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/05 15:22:59 by lhojoon          ###   ########.fr       */
+/*   Created: 2024/02/06 13:32:52 by lhojoon           #+#    #+#             */
+/*   Updated: 2024/02/06 13:33:16 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	push_elements(t_list **dest, t_list **src)
+t_list	*ft_lstcpy(t_list *lst)
 {
-	t_list	*lp;
+	t_list	*new;
+	t_list	*tmp;
 
-	if (*src == NULL)
-		return (false);
-	lp = *src;
-	*src = (*src)->next;
-	lp->next = *dest;
-	*dest = lp;
-	return (true);
+	new = NULL;
+	tmp = lst;
+	while (tmp)
+	{
+		ft_lstadd_back(&new, ft_lstnew(tmp->content));
+		tmp = tmp->next;
+	}
+	return (new);
 }
 
-bool	push_a(t_list **la, t_list **lb)
+void	ft_lstswap(t_list *a, t_list *b)
 {
-	ft_putstr_fd("pa\n", 1);
-	return (push_elements(la, lb));
-}
+	void	*tmp;
 
-bool	push_b(t_list **la, t_list **lb)
-{
-	ft_putstr_fd("pb\n", 1);
-	return (push_elements(lb, la));
+	tmp = a->content;
+	a->content = b->content;
+	b->content = tmp;
 }

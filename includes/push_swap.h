@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:37:20 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/12/01 15:43:11 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/06 14:54:07 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,19 @@ bool		push_a(t_list **la, t_list **lb);
 bool		push_b(t_list **la, t_list **lb);
 bool		verify_sorted(t_list *lst);
 void		execution(t_list **la, t_list **lb);
-void		sort_three_elements(t_list **lst, t_stack_type stack);
+void		sort_three_elements(t_list **lst);
+void		sort_four_elements(t_list **la, t_list **lb);
+void		sort_five_elements(t_list **la, t_list **lb);
 t_ab_value	get_smallest_cost(t_list **ta, t_list **tb);
 void		execute_by_command(t_ab_value value,
 				t_list **ta, t_list **tb, t_stack_type type);
 void		print_lists(t_list *la, t_list *lb);
-void		merge_sort(t_list **la, t_list **lb, t_stack_type type, int size);
+bool		input_error_check(char **slst, int lstlen, bool is_freeable);
+void		exit_with_error(void);
+void		free_slst(char **slst, int lstlen);
+bool		error_free_and_exit(char **slst, int lstlen, bool is_freeable);
+bool		duplicate_check(t_list *lst);
+t_list		*ft_lstcpy(t_list *lst);
+void		ft_lstswap(t_list *a, t_list *b);
 
 #endif

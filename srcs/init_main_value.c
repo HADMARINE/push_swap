@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:00:49 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/28 22:13:52 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/06 15:38:50 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	init_params_plain(int argc, char **argv, char ***slst, int *lstlen)
 	while (i < argc)
 	{
 		((*slst)[i - 1])
-			= (char *)malloc((ft_strlen(argv[i] + 1) * sizeof(char)));
+			= (char *)malloc(((ft_strlen(argv[i]) + 1) * sizeof(char)));
 		ft_strlcpy((*slst)[i - 1], argv[i], ft_strlen(argv[i]) + 1);
 		i++;
 	}
