@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:14:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/06 12:48:39 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/23 23:58:25 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 		init_params_split(argv[1], &slst, &lstlen);
 	else
 		init_params_plain(argc, argv, &slst, &lstlen);
-	if (input_error_check(slst, lstlen, argc == 2) == false)
+	if (input_error_check(slst, lstlen) == false)
 		exit_with_error();
 	la = NULL;
 	lb = NULL;

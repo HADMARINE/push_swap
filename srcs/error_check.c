@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:52:00 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/23 22:20:10 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/24 00:08:46 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static bool	input_numbers_check_start(char *s, int *j, int *zero_count)
 {
 	*j = 0;
 	*zero_count = 0;
+	while (*s == ' ')
+		s++;
 	if (*s == '-' || *s == '+')
 	{
 		if (*(s + 1) == '\0')
@@ -30,6 +32,8 @@ static bool	int_range_check(char *s)
 	bool	is_minus;
 
 	is_minus = false;
+	while (*s == ' ')
+		s++;
 	if (*s == '-')
 	{
 		is_minus = true;
@@ -37,20 +41,16 @@ static bool	int_range_check(char *s)
 	}
 	if (*s == '+')
 		s++;
+	while (*s == '0')
+		s++;
 	if (ft_strlen(s) > 10)
 		return (false);
 	if (ft_strlen(s) < 10)
 		return (true);
-	if (is_minus)
-	{
-		if (ft_strncmp(s, "2147483648", 10) > 0)
-			return (false);
-	}
-	else
-	{
-		if (ft_strncmp(s, "2147483647", 10) > 0)
-			return (false);
-	}
+	if (is_minus && ft_strncmp(s, "2147483648", 10) > 0)
+		return (false);
+	if (!is_minus && ft_strncmp(s, "2147483647", 10) > 0)
+		return (false);
 	return (true);
 }
 
@@ -74,7 +74,7 @@ static bool	input_numbers_check(char **s, int lstlen)
 				zero_count++;
 			j++;
 		}
-		if (zero_count > 1)
+		if (zero_count == (int)ft_strlen(str) && zero_count != 1)
 			return (false);
 		if (int_range_check(str) == false)
 			return (false);
@@ -83,10 +83,10 @@ static bool	input_numbers_check(char **s, int lstlen)
 	return (true);
 }
 
-bool	input_error_check(char **slst, int lstlen, bool is_freeable)
+bool	input_error_check(char **slst, int lstlen)
 {
 	if (lstlen == 0 || !input_numbers_check(slst, lstlen))
-		return (error_free_and_exit(slst, lstlen, is_freeable));
+		return (error_free_and_exit(slst, lstlen));
 	return (true);
 }
 

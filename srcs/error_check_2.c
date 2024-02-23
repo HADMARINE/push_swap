@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:33:05 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/06 12:42:23 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/23 23:57:57 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	free_slst(char **slst, int lstlen)
 	free(slst);
 }
 
-bool	error_free_and_exit(char **slst, int lstlen, bool is_freeable)
+bool	error_free_and_exit(char **slst, int lstlen)
 {
-	if (is_freeable == true)
-		free_slst(slst, lstlen);
+	free_slst(slst, lstlen);
 	return (false);
 }
