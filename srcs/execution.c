@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:36:03 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/23 22:25:12 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/27 21:43:24 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ t_list	*sort_lst(t_list *lst)
 	int		j;
 
 	i = 0;
-	new = ft_lstcpy(lst);
-	while (i < ft_lstsize(lst) - 1)
+	new = ft_int_deep_lstcpy(lst);
+	while (i < ft_lstsize(new) - 1)
 	{
-		j = i;
-		tmp = ft_lstget_idx(new, i);
-		while (j < ft_lstsize(lst) - 1)
+		j = 0;
+		tmp = ft_lstget_idx(new, 0);
+		while (j < ft_lstsize(new) - 1 - i)
 		{
 			if (*((int *)tmp->content) > *((int *)tmp->next->content))
 			{
@@ -61,8 +61,8 @@ void	replace_by_simple_number(t_list **la)
 	new = ft_lstcpy(*la);
 	while (++i < ft_lstsize(*la))
 	{
-		j = 0;
-		while (j < ft_lstsize(*la))
+		j = -1;
+		while (++j < ft_lstsize(*la))
 		{
 			if (*((int *)ft_lstget_idx(tmp, i)->content)
 				== *((int *)ft_lstget_idx(*la, j)->content))
@@ -70,11 +70,10 @@ void	replace_by_simple_number(t_list **la)
 				*((int *)ft_lstget_idx(new, j)->content) = i;
 				break ;
 			}
-			j++;
 		}
 	}
 	lst_paste(*la, new);
-	ft_lstclear(&tmp, NULL);
+	ft_lstclear(&tmp, free);
 	ft_lstclear(&new, NULL);
 }
 

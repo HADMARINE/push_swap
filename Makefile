@@ -6,13 +6,14 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/28 14:22:59 by lhojoon           #+#    #+#              #
-#    Updated: 2024/02/06 13:52:11 by lhojoon          ###   ########.fr        #
+#    Updated: 2024/02/27 21:59:26 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+DEBUG = 
 
 DIR = srcs
 SRCS_RAW =	main.c \
@@ -35,11 +36,11 @@ INCLUDES = -I./includes -I./libft
 
 LIBFT = libft.a
 
-all: $(NAME)
-$(NAME): libcompile $(OBJS)
+all: libcompile $(OBJS) $(NAME)
+$(NAME):
 	$(CC) $(OBJS) $(DEBUG) -Llibft -l:libft.a -o $(NAME)
 clean:
-	rm $(OBJS) $(OBJB) -f
+	rm $(OBJS) -f
 fclean: clean libclean
 	rm $(NAME) -f
 re: fclean all
@@ -48,7 +49,7 @@ libcompile: libftcompile
 libclean: libftclean
 
 libftcompile:
-	$(MAKE) bonus -C libft
+	$(MAKE) -C libft
 libftclean:
 	$(MAKE) fclean -C libft
 

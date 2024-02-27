@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:37:20 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/23 23:58:10 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/27 19:40:46 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ bool		error_free_and_exit(char **slst, int lstlen);
 bool		duplicate_check(t_list *lst);
 t_list		*ft_lstcpy(t_list *lst);
 void		ft_lstswap(t_list *a, t_list *b);
+t_list		*ft_int_deep_lstcpy(t_list *lst);
 
 #endif
